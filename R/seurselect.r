@@ -14,22 +14,22 @@ library(tidyverse)
 
 # Init javascript function to hide sel.panel.mode variable
 runInitJS <- function(){
-    runjs('document.getElementById("sel.panel.mode").parentElement.style.display="none"')
+    shinyjs::runjs('document.getElementById("sel.panel.mode").parentElement.style.display="none"')
 }
 
 ui <- function(seurat.object) {
-    fluidPage(
+    shiny::fluidPage(
         useShinyjs(),
         shiny::includeScript(file.path("..","js","script.js")),
         
         # titlePanel(UITitlePanel()),
         UITitlePanel(),
-        fluidRow(
-            column(
+        shiny::fluidRow(
+            shiny::column(
                 width = 8,
-                uiOutput("sel.panel"),
+                shiny::uiOutput("sel.panel"),
             ),
-            column(
+            shiny::column(
                 width = 4,
                 UIVisPanel(),
                 UIListSelection(),
@@ -37,9 +37,9 @@ ui <- function(seurat.object) {
             ),
         ),
         UIVisSelection(),
-        conditionalPanel(
+        shiny::conditionalPanel(
             "false", # always hide the download button
-            downloadButton("downloadData")
+            shiny::downloadButton("downloadData")
         )
     )
 }
