@@ -10,8 +10,7 @@ library(tidyverse)
 
 # source(file.path("R","server_components.r"), chdir=T)
 # source(file.path("R","ui_components.r"), chdir=T)
-source("server_components.r", chdir=T)
-source("ui_components.r", chdir=T)
+
 
 # Init javascript function to hide sel.panel.mode variable
 runInitJS <- function(){
@@ -21,7 +20,7 @@ runInitJS <- function(){
 ui <- function(seurat.object) {
     fluidPage(
         useShinyjs(),
-        shiny::includeScript("js/script.js"),
+        shiny::includeScript(file.path("..","js","script.js")),
         
         # titlePanel(UITitlePanel()),
         UITitlePanel(),
@@ -428,6 +427,8 @@ server <- function(input, output, session) {
                           
                           
 SeurSelect <- function(arg.seurat.object, l_selections=NULL, assay=NULL){
+    source("server_components.r", chdir=T)
+    source("ui_components.r", chdir=T)
     
     if (!is.null(assay)){
         DefaultAssay(object = arg.seurat.object) <- assay
