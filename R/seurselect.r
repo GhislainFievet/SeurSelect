@@ -51,22 +51,22 @@ server <- function(input, output, session) {
     # updateSelectizeInput(session, "dp.sel.genes", choices = c_genes, server = TRUE)
     
     
-    reactSelList <- reactiveValues(df_lists=l_init_selection$df_lists,
+    reactSelList <- shiny::reactiveValues(df_lists=l_init_selection$df_lists,
                               c_cell_selections=l_init_selection$c_cell_selections)
 
-    observeEvent(input$quit.button.1,{stopApp(returnValue = list(
+    shiny::observeEvent(input$quit.button.1,{stopApp(returnValue = list(
         "names"=reactSelList$df_lists[,c("selection","description","cell_number")],
                                       "cells"=reactSelList$c_cell_selections))})
-    observeEvent(input$quit.button.2,{stopApp(returnValue = list(
+    shiny::observeEvent(input$quit.button.2,{stopApp(returnValue = list(
         "names"=reactSelList$df_lists[,c("selection","description","cell_number")],
         "cells"=reactSelList$c_cell_selections))})
 
     
-    observeEvent(input$create.sel.button,{
+    shiny::observeEvent(input$create.sel.button,{
         updateTextInput(session,"sel.panel.mode", value = "creation")
     })
     
-    output$sel.panel <- renderUI({
+    output$sel.panel <- shiny::renderUI({
         if (input$sel.panel.mode == "main"){
             UIActionPanel()
         } else {
@@ -74,7 +74,7 @@ server <- function(input, output, session) {
         }
     })
     
-    output$vis.plot <- renderPlot({
+    output$vis.plot <- shiny::renderPlot({
         message("start output$vis.plot")
         req(input$sel.panel.mode)
         req(input$vis.red.algo)
@@ -110,55 +110,54 @@ server <- function(input, output, session) {
         c_alpha <- unlist(lapply(rownames(df_2plot), function(x) if (x %in% c_cell_list){1} else {0.01}))
         message("end output$vis.plot")
 
-        ggplot(df_2plot, aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + geom_point(alpha=c_alpha) + theme_bw()
+        ggplot2::ggplot(df_2plot, aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + geom_point(alpha=c_alpha) + theme_bw()
     })
     
-    selDimPlot <- eventReactive(
+    selDimPlot <- shiny::eventReactive(
         input$dp.sel.support.valid,{
-            DimPlot(seurat.object, group.by=input$dp.sel.meta.data, reduction=input$dp.sel.red.algo)+
+            Seurat::DimPlot(seurat.object, group.by=input$dp.sel.meta.data, reduction=input$dp.sel.red.algo)+
                 aes(key=colnames(seurat.object))
     })
-    selFeatureScatter <- eventReactive(
+    selFeatureScatter <- shiny::eventReactive(
         input$fs.sel.support.valid,{
-        FeatureScatter(seurat.object, feature1 = input$fs.sel.genes1, feature2 = input$fs.sel.genes2, group.by=input$fs.sel.meta.data)+
+        Seurat::FeatureScatter(seurat.object, feature1 = input$fs.sel.genes1, feature2 = input$fs.sel.genes2, group.by=input$fs.sel.meta.data)+
             # aes(key=colnames(seurat.object))
             aes(key=1:length(colnames(seurat.object)))
     })
-    selVlnPlot <- eventReactive(
-        
+    selVlnPlot <- shiny::eventReactive(
         input$vp.sel.support.valid,{
-            VlnPlot(seurat.object, features = input$vp.sel.genes) + aes(key=1:length(colnames(seurat.object)))
+            Seurat::VlnPlot(seurat.object, features = input$vp.sel.genes) + aes(key=1:length(colnames(seurat.object)))
     })
-    selFeaturePlot <- eventReactive(
+    selFeaturePlot <- shiny::eventReactive(
         input$fp.sel.support.valid,{
-        FeaturePlot(seurat.object, features = input$fp.sel.genes, min.cutoff=input$fp.sel.cutoff.slider[1], max.cutoff=input$fp.sel.cutoff.slider[2], reduction = input$fp.sel.red.algo) + aes(key=colnames(seurat.object))
+        Seurat::FeaturePlot(seurat.object, features = input$fp.sel.genes, min.cutoff=input$fp.sel.cutoff.slider[1], max.cutoff=input$fp.sel.cutoff.slider[2], reduction = input$fp.sel.red.algo) + aes(key=colnames(seurat.object))
     })
         
     
-    output$sel.plot <- renderPlotly({
+    output$sel.plot <- plotly::renderPlotly({
         myplot <- switch(input$tp.sel.panel,
                          "DimPlot"=selDimPlot(),
                          "FeatureScatter"=selFeatureScatter(),
                          "VlnPlot"=selVlnPlot(),
                          "FeaturePlot"=selFeaturePlot()
                         )
-        ggplotly(myplot) %>% 
+        plotly::ggplotly(myplot) %>% 
           layout(dragmode = "select")
       })
                           
     ## Handle server side large gene set
-    observeEvent(input$tp.sel.panel,
+    shiny::observeEvent(input$tp.sel.panel,
         {switch(input$tp.sel.panel,
                  "DimPlot"={},
-                 "FeatureScatter"={updateSelectizeInput(session, "fs.sel.genes1", choices = c_genes, server = TRUE)
-                                  updateSelectizeInput(session, "fs.sel.genes2", choices = c_genes, server = TRUE)},
-                 "VlnPlot"={updateSelectizeInput(session, "vp.sel.genes", choices = c_genes, server = TRUE)},
-                 "FeaturePlot"=updateSelectizeInput(session, "fp.sel.genes", choices = c_genes, server = TRUE)
+                 "FeatureScatter"={shiny::updateSelectizeInput(session, "fs.sel.genes1", choices = c_genes, server = TRUE)
+                                  shiny::updateSelectizeInput(session, "fs.sel.genes2", choices = c_genes, server = TRUE)},
+                 "VlnPlot"={shiny::updateSelectizeInput(session, "vp.sel.genes", choices = c_genes, server = TRUE)},
+                 "FeaturePlot"=shiny::updateSelectizeInput(session, "fp.sel.genes", choices = c_genes, server = TRUE)
                 )
         })
                           
       ## returns the data related to data points selected by the user
-      output$vis.sel.table <- renderPrint({
+      output$vis.sel.table <- shiny::renderPrint({
         c_cell_list = c()
         
         if (input$sel.panel.mode == "main"){
@@ -190,7 +189,7 @@ server <- function(input, output, session) {
       selection = list(mode = "single", target = "row")
     )
                     
-    reactCellList <- eventReactive(
+    reactCellList <- shiny::eventReactive(
         input$list.sel.table_rows_selected,{
         if (is.null(input$list.sel.table_rows_selected)){
             c()
@@ -200,32 +199,32 @@ server <- function(input, output, session) {
         }
     }, ignoreNULL = FALSE)
                           
-    observeEvent(input$save.cancel,{
-        updateTextInput(session,"sel.panel.mode", value = "main")
+    shiny::observeEvent(input$save.cancel,{
+        shiny::updateTextInput(session,"sel.panel.mode", value = "main")
     })
 
     # Observe save selection
-    observeEvent(input$dp.save.selection,{
+    shiny::observeEvent(input$dp.save.selection,{
         req(input$dp.save.selection)
-        showModal(dataModal())
+        shiny::showModal(dataModal())
     })
-    observeEvent(input$fs.save.selection,{
+    shiny::observeEvent(input$fs.save.selection,{
         req(input$fs.save.selection)
-        showModal(dataModal())
+        shiny::showModal(dataModal())
     })
-    observeEvent(input$vp.save.selection,{
+    shiny::observeEvent(input$vp.save.selection,{
         req(input$vp.save.selection)
-        showModal(dataModal())
+        shiny::showModal(dataModal())
     })
-    observeEvent(input$fp.save.selection,{
+    shiny::observeEvent(input$fp.save.selection,{
         req(input$fp.save.selection)
-        showModal(dataModal())
+        shiny::showModal(dataModal())
     })
 
 
-    observeEvent(input$list.sel.table_rows_selected, {
+    shiny::observeEvent(input$list.sel.table_rows_selected, {
         req(input$list.sel.table_rows_selected)
-        updateTextInput(session,"sel.panel.mode", value = "main")
+        shiny::updateTextInput(session,"sel.panel.mode", value = "main")
         # showModal(modalDialog(
         #   title = "message",
         #   paste("This is a somewhat important message:", 
@@ -234,42 +233,42 @@ server <- function(input, output, session) {
         #   footer = NULL))
       })
                           
-   observeEvent(input$current_id, {
+   shiny::observeEvent(input$current_id, {
            c_str_split = unlist(strsplit(input$current_id,"_"))
            action_type = c_str_split[1]
            action_id = c_str_split[2]
        
-          showModal(modalDialog(
+          shiny::showModal(shiny::modalDialog(
           title = "message",
           str(session),
           easyClose = TRUE,
           footer = NULL))
        })
                           
-    observeEvent(input$in_edit_selection,{
-        showModal(editModal())
+    shiny::observeEvent(input$in_edit_selection,{
+        shiny::showModal(editModal())
         str_title = reactSelList$df_lists[as.numeric(input$in_edit_selection), "selection"][1]
         str_description = reactSelList$df_lists[as.numeric(input$in_edit_selection), "description"][1]
-        updateTextInput(session,"edit.name", value = str_title)
-        updateTextInput(session,"edit.description", value = str_description)
+        shiny::updateTextInput(session,"edit.name", value = str_title)
+        shiny::updateTextInput(session,"edit.description", value = str_description)
     })
                           
-    observeEvent(input$edit.cancel,{
-        removeModal()
+    shiny::observeEvent(input$edit.cancel,{
+        shiny::removeModal()
     })
                           
-    observeEvent(input$edit.form.submit,{
+    shiny::observeEvent(input$edit.form.submit,{
         reactSelList$df_lists[as.numeric(input$in_edit_selection),"selection"] = input$edit.name
         reactSelList$df_lists[as.numeric(input$in_edit_selection),"description"] = input$edit.description
-        removeModal()
+        shiny::removeModal()
     })
 
-   observeEvent(
+   shiny::observeEvent(
         input$save.selection.form.submit,{
 
         if (is.null(input$save.selection.form.submit)){
-            reactSelList$df_lists <- isolate(reactSelList$df_lists)
-            reactSelList$c_cell_selections <- isolate(reactSelList$c_cell_selections)
+            reactSelList$df_lists <- shiny::isolate(reactSelList$df_lists)
+            reactSelList$c_cell_selections <- shiny::isolate(reactSelList$c_cell_selections)
         } else {
             c_temp <- event_data("plotly_selected")$key
             if ( ! c_temp[1] %in% colnames(seurat.object)){
@@ -295,10 +294,10 @@ server <- function(input, output, session) {
             # reactSelList$df_lists <- isolate(reactSelList$df_lists)
             # c_res$c_cell_selections <- isolate(c_cell_selections)
         }
-        removeModal()
+        shiny::removeModal()
     })
                           
-    observeEvent(input$selection_to_remove, {
+    shiny::observeEvent(input$selection_to_remove, {
         str_selection_id = reactSelList$df_lists$selection[as.numeric(input$selection_to_remove)]
         
         c_mask = 1:nrow(reactSelList$df_lists)
@@ -323,7 +322,7 @@ server <- function(input, output, session) {
     
 
     # Download handlers
-    output$dp.export.selection <- downloadHandler(
+    output$dp.export.selection <- shiny::downloadHandler(
       filename = function() {
         "selection.txt"
       },
@@ -332,7 +331,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected")
             if(is.null(click_data)){
                 c_cell_list <- c()
             } else {
@@ -345,7 +344,7 @@ server <- function(input, output, session) {
         write.table(c_cell_list, file, sep="\t", quote=F, row.names=F, col.names=F)
       }
     )
-    output$fs.export.selection <- downloadHandler(
+    output$fs.export.selection <- shiny::downloadHandler(
       filename = function() {
         "selection.txt"
       },
@@ -354,7 +353,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected")
             if(is.null(click_data)){
                 c_cell_list <- c()
             } else {
@@ -367,7 +366,7 @@ server <- function(input, output, session) {
         write.table(c_cell_list, file, sep="\t", quote=F, row.names=F, col.names=F)
       }
     )
-    output$vp.export.selection <- downloadHandler(
+    output$vp.export.selection <- shiny::downloadHandler(
       filename = function() {
         "selection.txt"
       },
@@ -376,7 +375,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected")
             if(is.null(click_data)){
                 c_cell_list <- c()
             } else {
@@ -389,7 +388,7 @@ server <- function(input, output, session) {
         write.table(c_cell_list, file, sep="\t", quote=F, row.names=F, col.names=F)
       }
     )
-    output$fp.export.selection <- downloadHandler(
+    output$fp.export.selection <- shiny::downloadHandler(
       filename = function() {
         "selection.txt"
       },
@@ -398,7 +397,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected")
             if(is.null(click_data)){
                 c_cell_list <- c()
             } else {
@@ -412,7 +411,7 @@ server <- function(input, output, session) {
       }
     )
      
-    output$downloadData <- downloadHandler(
+    output$downloadData <- shiny::downloadHandler(
         filename = function() {
           base_name = reactSelList$df_lists$selection[as.numeric(input$file_to_dl)]
           paste0(base_name,".tsv")
@@ -431,7 +430,7 @@ SeurSelect <- function(arg.seurat.object, l_selections=NULL, assay=NULL){
     # source("ui_components.r", chdir=T)
     
     if (!is.null(assay)){
-        DefaultAssay(object = arg.seurat.object) <- assay
+        Seurat::DefaultAssay(object = arg.seurat.object) <- assay
     }
     seurat.object <<- arg.seurat.object
     

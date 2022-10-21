@@ -12,29 +12,29 @@ visPlot <- function(seurat.object, reduction, metadata) {
 
     c_alpha <- unlist(lapply(rownames(df_2plot), function(x) if (x %in% c_cell_list){1} else {0.01}))
 
-    ggplot(df_2plot, aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + geom_point(alpha=c_alpha) + theme_bw()
+    ggplot2::ggplot(df_2plot, aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + geom_point(alpha=c_alpha) + theme_bw()
 }
                              
 dataModal <- function() {
-      modalDialog(
-        textInput("selection.name", "Choose a name for your selection"),
-        textInput("selection.description", "Short description of the selection"),
+      shiny::modalDialog(
+        shiny::textInput("selection.name", "Choose a name for your selection"),
+        shiny::textInput("selection.description", "Short description of the selection"),
 
         footer = tagList(
-          modalButton("Cancel"),
-          actionButton("save.selection.form.submit", "OK")
+          shiny::modalButton("Cancel"),
+          shiny::actionButton("save.selection.form.submit", "OK")
         )
       )
 }
                              
 editModal <- function() {
-      modalDialog(
-        textInput("edit.name", "Choose a name for your selection"),
-        textInput("edit.description", "Short description of the selection"),
+      shiny::modalDialog(
+        shiny::textInput("edit.name", "Choose a name for your selection"),
+        shiny::textInput("edit.description", "Short description of the selection"),
 
         footer = tagList(
-          modalButton("edit.cancel"),
-          actionButton("edit.form.submit", "save modifications")
+          shiny::modalButton("edit.cancel"),
+          shiny::actionButton("edit.form.submit", "save modifications")
         )
       )
 }
