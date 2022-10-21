@@ -193,7 +193,7 @@ UIListSelection <- function(){
     list(
         shiny::h2("Selection list"),
         shiny::div(
-        shiny::dataTableOutput('list.sel.table'),id="list.sel.table.parent", style="cursor:pointer")
+        DT::dataTableOutput('list.sel.table'),id="list.sel.table.parent", style="cursor:pointer")
     )
 }
 
