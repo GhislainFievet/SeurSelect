@@ -141,8 +141,10 @@ server <- function(input, output, session) {
                          "VlnPlot"=selVlnPlot(),
                          "FeaturePlot"=selFeaturePlot()
                         )
-        plotly::ggplotly(myplot) %>% 
-          layout(dragmode = "select")
+        # plotly::ggplotly(myplot) %>% 
+        #   layout(dragmode = "select")
+
+        layout(plotly::ggplotly(myplot), dragmode = "select")
       })
                           
     ## Handle server side large gene set
