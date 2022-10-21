@@ -110,7 +110,7 @@ server <- function(input, output, session) {
         c_alpha <- unlist(lapply(rownames(df_2plot), function(x) if (x %in% c_cell_list){1} else {0.01}))
         message("end output$vis.plot")
 
-        ggplot2::ggplot(df_2plot, ggplot2::aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + ggplot2::geom_point(alpha=c_alpha) + theme_bw()
+        ggplot2::ggplot(df_2plot, ggplot2::aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + ggplot2::geom_point(alpha=c_alpha) + ggplot2::theme_bw()
     })
     
     selDimPlot <- shiny::eventReactive(
