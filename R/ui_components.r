@@ -7,7 +7,7 @@ UITitlePanel <- function(){
         ),
         shiny::column(
             width=4,
-            shiny::actionButton("quit.button.1","Back to console", icon = icon("arrow-left", style="margin-right:1em"), align="right"),
+            shiny::actionButton("quit.button.1","Back to console", icon = shiny::icon("arrow-left", style="margin-right:1em"), align="right"),
             style="display:flex;justify-content:flex-end;margin-top:1em"
         ),
         style="background-color:rgb(240,240,240); style:'margin-top:0'"
@@ -68,7 +68,7 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("dp.save.selection","save selection", icon=icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        shiny::actionButton("dp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -104,7 +104,7 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("fs.save.selection","save selection", icon=icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        shiny::actionButton("fs.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -132,7 +132,7 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("vp.save.selection","save selection", icon=icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        shiny::actionButton("vp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -169,7 +169,7 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("fp.save.selection","save selection", icon=icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        shiny::actionButton("fp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
