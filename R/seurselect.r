@@ -466,5 +466,5 @@ SeurSelect <- function(arg.seurat.object, l_selections=NULL, assay=NULL){
                   c_cell_selections=l_selections$cells)
     }
     
-    return(runGadget(ui(seurat.object), server))
+    return(shiny::runGadget(ui(seurat.object), server))
 }
