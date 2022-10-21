@@ -176,7 +176,7 @@ UISelPanel = function(){
                 )
             )
         ),
-        shinycssloaders::withSpinner(shiny::plotlyOutput("sel.plot", width = "100%", height="100%"))
+        shinycssloaders::withSpinner(plotly::plotlyOutput("sel.plot", width = "100%", height="100%"))
     )
 }
 

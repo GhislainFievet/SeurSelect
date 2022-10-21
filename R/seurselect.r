@@ -85,7 +85,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected")
             click_data = NULL
             if(is.null(click_data)){
                 c_cell_list <- c()
@@ -163,7 +163,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected")
             click_data = NULL
             if(is.null(click_data)){
                 c_cell_list <- c()
@@ -270,7 +270,7 @@ server <- function(input, output, session) {
             reactSelList$df_lists <- shiny::isolate(reactSelList$df_lists)
             reactSelList$c_cell_selections <- shiny::isolate(reactSelList$c_cell_selections)
         } else {
-            c_temp <- event_data("plotly_selected")$key
+            c_temp <- plotly::event_data("plotly_selected")$key
             if ( ! c_temp[1] %in% colnames(seurat.object)){
                 # if ( can.be.numeric(c_cell_list[1])){
                     c_temp <- colnames(seurat.object)[as.numeric(c_temp)]
