@@ -110,27 +110,27 @@ server <- function(input, output, session) {
         c_alpha <- unlist(lapply(rownames(df_2plot), function(x) if (x %in% c_cell_list){1} else {0.01}))
         message("end output$vis.plot")
 
-        ggplot2::ggplot(df_2plot, aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + geom_point(alpha=c_alpha) + theme_bw()
+        ggplot2::ggplot(df_2plot, ggplot2::aes(x = x.seurselect, y = y.seurselect, color=c_colors)) + geom_point(alpha=c_alpha) + theme_bw()
     })
     
     selDimPlot <- shiny::eventReactive(
         input$dp.sel.support.valid,{
             Seurat::DimPlot(seurat.object, group.by=input$dp.sel.meta.data, reduction=input$dp.sel.red.algo)+
-                aes(key=colnames(seurat.object))
+                ggplot2::aes(key=colnames(seurat.object))
     })
     selFeatureScatter <- shiny::eventReactive(
         input$fs.sel.support.valid,{
         Seurat::FeatureScatter(seurat.object, feature1 = input$fs.sel.genes1, feature2 = input$fs.sel.genes2, group.by=input$fs.sel.meta.data)+
             # aes(key=colnames(seurat.object))
-            aes(key=1:length(colnames(seurat.object)))
+            ggplot2::aes(key=1:length(colnames(seurat.object)))
     })
     selVlnPlot <- shiny::eventReactive(
         input$vp.sel.support.valid,{
-            Seurat::VlnPlot(seurat.object, features = input$vp.sel.genes) + aes(key=1:length(colnames(seurat.object)))
+            Seurat::VlnPlot(seurat.object, features = input$vp.sel.genes) + ggplot2::aes(key=1:length(colnames(seurat.object)))
     })
     selFeaturePlot <- shiny::eventReactive(
         input$fp.sel.support.valid,{
-        Seurat::FeaturePlot(seurat.object, features = input$fp.sel.genes, min.cutoff=input$fp.sel.cutoff.slider[1], max.cutoff=input$fp.sel.cutoff.slider[2], reduction = input$fp.sel.red.algo) + aes(key=colnames(seurat.object))
+        Seurat::FeaturePlot(seurat.object, features = input$fp.sel.genes, min.cutoff=input$fp.sel.cutoff.slider[1], max.cutoff=input$fp.sel.cutoff.slider[2], reduction = input$fp.sel.red.algo) + ggplot2::aes(key=colnames(seurat.object))
     })
         
     
