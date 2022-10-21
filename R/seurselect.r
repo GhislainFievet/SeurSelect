@@ -196,8 +196,8 @@ server <- function(input, output, session) {
         if (is.null(input$list.sel.table_rows_selected)){
             c()
         } else {
-            selection_id <- isolate(reactSelList$df_lists$selection[input$list.sel.table_rows_selected])
-            isolate(reactSelList$c_cell_selections[[selection_id]])
+            selection_id <- shiny::isolate(reactSelList$df_lists$selection[input$list.sel.table_rows_selected])
+            shiny::isolate(reactSelList$c_cell_selections[[selection_id]])
         }
     }, ignoreNULL = FALSE)
                           
