@@ -430,23 +430,24 @@ server <- function(input, output, session) {
 SeurSelect <- function(arg.seurat.object, l_selections=NULL, assay=NULL){
     # source("server_components.r", chdir=T)
     # source("ui_components.r", chdir=T)
-    
+
     if (!is.null(assay)){
         Seurat::DefaultAssay(object = arg.seurat.object) <- assay
     }
     seurat.object <<- arg.seurat.object
-    
+
     c_meta_data <<- c()
     for ( str_md in names(seurat.object@meta.data)){
         if ( length(unique(seurat.object@meta.data[[str_md]])) < 100 ){
             c_meta_data <<- c(c_meta_data, str_md)
         }
     }
-    
+
     c_reducs <<- rev(names(seurat.object@reductions))
     c_genes <<- unlist(rownames(seurat.object))
 
     if (is.null(l_selections)){
+        message("SeurSelect: is.null(l_selections))")
         l_init_selection <<- list(df_lists=data.frame(selection=c("rand10"),
               description=c("Random selection of 10 cells"),
               cell_number=c(10),
@@ -456,6 +457,7 @@ SeurSelect <- function(arg.seurat.object, l_selections=NULL, assay=NULL){
                          "<button id='iddel_",c(1),"' onclick=removeSelection(this.id)><i class='fa fa-trash'></i></button> ")),
                   c_cell_selections=list(rand10=sample(colnames(seurat.object), 10)))
     } else {
+        message("SeurSelect: !is.null(l_selections))")
         l_init_selection <<- l_selections
         l_init_selection <<- list(df_lists=data.frame(selection=l_selections$names$selection,
               description=l_selections$names$description,
