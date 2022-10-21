@@ -88,8 +88,10 @@ server <- function(input, output, session) {
             click_data <- plotly::event_data("plotly_selected")
             click_data = NULL
             if(is.null(click_data)){
+                message("output$vis.plot: is.null(click_data)")
                 c_cell_list <- c()
             } else {
+                message("output$vis.plot: !is.null(click_data)")
                 # curveNumber
                 # pointNumber
                 # x
@@ -194,8 +196,10 @@ server <- function(input, output, session) {
     reactCellList <- shiny::eventReactive(
         input$list.sel.table_rows_selected,{
         if (is.null(input$list.sel.table_rows_selected)){
+            message("reactCellList is.null(input$list.sel.table_rows_selected)")
             c()
         } else {
+            message("reactCellList !is.null(input$list.sel.table_rows_selected)")
             selection_id <- shiny::isolate(reactSelList$df_lists$selection[input$list.sel.table_rows_selected])
             shiny::isolate(reactSelList$c_cell_selections[[selection_id]])
         }
@@ -335,8 +339,10 @@ server <- function(input, output, session) {
         } else {
             click_data <- plotly::event_data("plotly_selected")
             if(is.null(click_data)){
+                message("dp.export.selection: is.null(click_data)")
                 c_cell_list <- c()
             } else {
+                message("dp.export.selection: !is.null(click_data)")
                 c_cell_list <- click_data$key
                 if ( ! c_cell_list[1] %in% colnames(seurat.object)){
                     c_cell_list <- colnames(seurat.object)[as.numeric(c_cell_list)]
@@ -412,7 +418,7 @@ server <- function(input, output, session) {
         write.table(c_cell_list, file, sep="\t", quote=F, row.names=F, col.names=F)
       }
     )
-     
+
     output$downloadData <- shiny::downloadHandler(
         filename = function() {
           base_name = reactSelList$df_lists$selection[as.numeric(input$file_to_dl)]
