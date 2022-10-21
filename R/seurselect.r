@@ -144,7 +144,7 @@ server <- function(input, output, session) {
         # plotly::ggplotly(myplot) %>% 
         #   layout(dragmode = "select")
 
-        layout(plotly::ggplotly(myplot), dragmode = "select")
+        plotly::layout(plotly::ggplotly(myplot), dragmode = "select")
       })
                           
     ## Handle server side large gene set
