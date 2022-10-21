@@ -147,7 +147,7 @@ server <- function(input, output, session) {
         #   layout(dragmode = "select")
         
         p = plotly::layout(plotly::ggplotly(myplot), dragmode = "select")
-        event_register(p, 'plotly_selected')
+        plotly::event_register(p, 'plotly_selected')
         p
         
         # plotly::layout(plotly::ggplotly(myplot, source="sel_source"), dragmode = "select")
