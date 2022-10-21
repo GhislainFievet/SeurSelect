@@ -85,7 +85,7 @@ server <- function(input, output, session) {
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
         } else {
-            click_data <- plotly::event_data("plotly_selected")
+            click_data <- plotly::event_data("plotly_selected", source="source_sel")
             click_data = NULL
             if(is.null(click_data)){
                 message("output$vis.plot: is.null(click_data)")
@@ -146,7 +146,7 @@ server <- function(input, output, session) {
         # plotly::ggplotly(myplot) %>% 
         #   layout(dragmode = "select")
 
-        plotly::layout(plotly::ggplotly(myplot), dragmode = "select")
+        plotly::layout(plotly::ggplotly(myplot, source="source_sel"), dragmode = "select")
       })
                           
     ## Handle server side large gene set
