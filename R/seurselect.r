@@ -19,7 +19,7 @@ runInitJS <- function(){
 
 ui <- function(seurat.object) {
     shiny::fluidPage(
-        useShinyjs(),
+        shinyjs::useShinyjs(),
         shiny::includeScript(file.path("..","js","script.js")),
         
         # titlePanel(UITitlePanel()),
