@@ -126,7 +126,7 @@ server <- function(input, output, session) {
     })
     selVlnPlot <- shiny::eventReactive(
         input$vp.sel.support.valid,{
-            Seurat::VlnPlot(seurat.object, features = input$vp.sel.genes, reduction=input$vp.sel.red.algo) + ggplot2::aes(key=1:length(colnames(seurat.object)))
+            Seurat::VlnPlot(seurat.object, features = input$vp.sel.genes, group.by=input$vp.sel.meta.data) + ggplot2::aes(key=1:length(colnames(seurat.object)))
     })
     selFeaturePlot <- shiny::eventReactive(
         input$fp.sel.support.valid,{
