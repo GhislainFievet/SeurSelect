@@ -1,11 +1,2 @@
 Package: seurselect
 Version: 0.1
-Imports:
-    shiny,
-    ggplot2,
-    Seurat,
-    shinycssloaders,
-    plotly,
-    shinyjs,
-    DT,
-    dplyr
