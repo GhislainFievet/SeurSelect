@@ -2,7 +2,7 @@ UITitlePanel <- function(){
     shiny::fluidRow(
         shiny::column(
             width=8,
-            shiny::h1("SeurSelect", align = "center"),
+            shiny::h1("SeurSelect"),
             shiny::textInput("sel.panel.mode", "", value="main")
         ),
         shiny::column(
