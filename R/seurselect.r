@@ -1,15 +1,12 @@
-library(shiny)
-library(ggplot2)
-library(Cairo)
-library(Seurat)
-library(shinycssloaders)
-library(plotly)
-library(shinyjs)
-library(DT)
-library(tidyverse)
-
-# source(file.path("R","server_components.r"), chdir=T)
-# source(file.path("R","ui_components.r"), chdir=T)
+# library(shiny)
+# library(ggplot2)
+# library(Cairo)
+# library(Seurat)
+# library(shinycssloaders)
+# library(plotly)
+# library(shinyjs)
+# library(DT)
+# library(tidyverse)
 
 
 # Init javascript function to hide sel.panel.mode variable
