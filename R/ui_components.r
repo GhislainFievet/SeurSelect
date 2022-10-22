@@ -15,8 +15,8 @@ UITitlePanel <- function(){
 }
 
 UIVisPanel = function(){
-    selected_red = ifelse( "umap" %in% c_reducs, "umap", NULL)
-    selected_meta = ifelse( "seurat_clusters" %in% c_reducs, "seurat_clusters", NULL)
+    selected_red = ifelse( "umap" %in% c_reducs, "umap", c_reducs[1])
+    selected_meta = ifelse( "seurat_clusters" %in% c_meta_data, "seurat_clusters", c_meta_data[1])
     
     list(
         shiny::fluidRow(
@@ -38,8 +38,8 @@ UIVisPanel = function(){
 }
 
 UISelPanel = function(){ 
-    selected_red = ifelse( "umap" %in% c_reducs, "umap", NULL)
-    selected_meta = ifelse( "seurat_clusters" %in% c_reducs, "seurat_clusters", NULL)
+    selected_red = ifelse( "umap" %in% c_reducs, "umap", c_reducs[1])
+    selected_meta = ifelse( "seurat_clusters" %in% c_meta_data, "seurat_clusters", c_meta_data[1])
     
     list(
         shiny::fluidRow(
