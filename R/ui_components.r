@@ -16,6 +16,7 @@ UITitlePanel <- function(){
 
 UIVisPanel = function(){
     selected_red = ifelse( "umap" %in% c_reducs, "umap", NULL)
+    selected_meta = ifelse( "seurat_clusters" %in% c_reducs, "seurat_clusters", NULL)
     
     list(
         shiny::fluidRow(
@@ -29,7 +30,7 @@ UIVisPanel = function(){
             ),
             shiny::column(
                 width = 4,
-                shiny::selectInput("vis.meta.data","Metadata",c_meta_data)
+                shiny::selectInput("vis.meta.data","Metadata",c_meta_data, selected=selected_meta)
             )
         ),
         shinycssloaders::withSpinner(shiny::plotOutput("vis.plot"))
@@ -37,6 +38,9 @@ UIVisPanel = function(){
 }
 
 UISelPanel = function(){ 
+    selected_red = ifelse( "umap" %in% c_reducs, "umap", NULL)
+    selected_meta = ifelse( "seurat_clusters" %in% c_reducs, "seurat_clusters", NULL)
+    
     list(
         shiny::fluidRow(
             shiny::column(
@@ -52,11 +56,11 @@ UISelPanel = function(){
                 shiny::fluidRow(                    
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("dp.sel.red.algo","Dim Reduc Algo ", c_reducs)
+                        shiny::selectInput("dp.sel.red.algo","Dim Reduc Algo ", c_reducs, selected=selected_red)
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("dp.sel.meta.data","Metadata", c_meta_data)
+                        shiny::selectInput("dp.sel.meta.data","Metadata", c_meta_data, selected=selected_meta)
                     ),
                     shiny::column(
                         width = 1,
@@ -82,7 +86,7 @@ UISelPanel = function(){
                 shiny::fluidRow(
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("fs.sel.meta.data","Metadata", c_meta_data)
+                        shiny::selectInput("fs.sel.meta.data","Metadata", c_meta_data, selected=selected_meta)
                     ),
                     shiny::column(
                         width = 2,
@@ -123,6 +127,10 @@ UISelPanel = function(){
                         # selectInput("vp.sel.genes","Gene", c_genes)
                     ),
                     shiny::column(
+                        width = 2,
+                        shiny::selectInput("vp.sel.meta.data","Metadata", c_meta_data, selected=selected_meta)
+                    ),
+                    shiny::column(
                         width = 1,
                         shiny::actionButton("vp.sel.support.valid","OK"),
                         style="display:flex;align-items:center"
@@ -146,7 +154,7 @@ UISelPanel = function(){
                 shiny::fluidRow(
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("fp.sel.red.algo","Dim Reduc Algo ", c_reducs)
+                        shiny::selectInput("fp.sel.red.algo","Dim Reduc Algo ", c_reducs, selected=selected_red)
                     ),
                     shiny::column(
                         width = 2,
