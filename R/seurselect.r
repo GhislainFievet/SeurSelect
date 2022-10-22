@@ -86,7 +86,7 @@ server <- function(input, output, session) {
             c_cell_list <- reactCellList()
         } else {
             click_data <- plotly::event_data("plotly_selected")
-            click_data = NULL
+            # click_data = NULL
             if(is.null(click_data)){
                 message("output$vis.plot: is.null(click_data)")
                 c_cell_list <- c()
