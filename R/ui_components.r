@@ -15,6 +15,8 @@ UITitlePanel <- function(){
 }
 
 UIVisPanel = function(){
+    selected_red = ifelse( "umap" %in% c_reducs, "umap", NULL)
+    
     list(
         shiny::fluidRow(
             # column(
@@ -23,7 +25,7 @@ UIVisPanel = function(){
             # ),
             shiny::column(
                 width = 4,
-                shiny::selectInput("vis.red.algo","Dim Reduc Algo ",c_reducs)
+                shiny::selectInput("vis.red.algo","Dim Reduc Algo ",c_reducs, selected=selected_red)
             ),
             shiny::column(
                 width = 4,
