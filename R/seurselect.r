@@ -106,7 +106,7 @@ server <- function(input, output, session) {
         c_new_order <- sample(1:nrow(df_2plot))
         df_2plot <- df_2plot[c_new_order, ]
         c_colors <- seurat.object@meta.data[[input$vis.meta.data]][c_new_order]
-        alpha_val = nrow(df_2plot) * 0.01/17000
+        alpha_val = 0.01*17000 /nrow(df_2plot)
         c_alpha <- unlist(lapply(rownames(df_2plot), function(x) if (x %in% c_cell_list){1} else {alpha_val}))
         message("end output$vis.plot")
 
