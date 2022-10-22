@@ -1,1 +1,1 @@
-importFrom(last_plot,ggplot2)
+importFrom(ggplot2,last_plot)
