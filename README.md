@@ -17,7 +17,7 @@ library(seurselect)
 
 ## Basic usage
 
-You need a Seurat object, let's say ```pbmc```. To run the app execute:
+You need a **Seurat object**, let's say ```pbmc```. To run the app execute:
 ```R
 SeurSelect(pmbc)
 ```
