@@ -1,5 +1,7 @@
 # SeurSelect
 
+![presentation view](https://raw.githubusercontent.com/GhislainFievet/SeurSelect/main/im/main_panel.png)
+
 ## Discover a demo on shinyapp.io
 link_to_app
 
