@@ -64,8 +64,8 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("dp.sel.support.valid","OK"),
-                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                        shiny::actionButton("dp.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style="display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 5,
@@ -100,8 +100,8 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("fs.sel.support.valid","OK"),
-                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                        shiny::actionButton("fs.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style="display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 3,
@@ -132,8 +132,8 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("vp.sel.support.valid","OK"),
-                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                        shiny::actionButton("vp.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style="display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 7,
@@ -169,8 +169,8 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("fp.sel.support.valid","OK"),
-                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                        shiny::actionButton("fp.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style="display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 3,
