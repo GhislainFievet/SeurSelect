@@ -65,16 +65,16 @@ UISelPanel = function(){
                     shiny::column(
                         width = 1,
                         shiny::actionButton("dp.sel.support.valid","OK"),
-                        style="display:flex;align-items:center"
+                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
                     ),
                     shiny::column(
                         width = 5,
-                        shiny::downloadButton("dp.export.selection","export current selection"),
+                        disabled(shiny::downloadButton("dp.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("dp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        disabled(shiny::actionButton("dp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -101,16 +101,16 @@ UISelPanel = function(){
                     shiny::column(
                         width = 1,
                         shiny::actionButton("fs.sel.support.valid","OK"),
-                        style="display:flex;align-items:center"
+                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
                     ),
                     shiny::column(
                         width = 3,
-                        shiny::downloadButton("fs.export.selection","export current selection"),
+                        disabled(shiny::downloadButton("fs.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("fs.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        disabled(shiny::actionButton("fs.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -133,16 +133,16 @@ UISelPanel = function(){
                     shiny::column(
                         width = 1,
                         shiny::actionButton("vp.sel.support.valid","OK"),
-                        style="display:flex;align-items:center"
+                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
                     ),
                     shiny::column(
                         width = 7,
-                        shiny::downloadButton("vp.export.selection","export current selection"),
+                        disabled(shiny::downloadButton("vp.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("vp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        disabled(shiny::actionButton("vp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -170,16 +170,16 @@ UISelPanel = function(){
                     shiny::column(
                         width = 1,
                         shiny::actionButton("fp.sel.support.valid","OK"),
-                        style="display:flex;align-items:center"
+                        style="display:flex;align-items:center;color: #fff; background-color: #337ab7; border-color: #2e6da4"
                     ),
                     shiny::column(
                         width = 3,
-                        shiny::downloadButton("fp.export.selection","export current selection"),
+                        disabled(shiny::downloadButton("fp.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::actionButton("fp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        disabled(shiny::actionButton("fp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"

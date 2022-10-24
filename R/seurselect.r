@@ -81,13 +81,42 @@ server <- function(input, output, session) {
         
         if (input$sel.panel.mode == "main"){
             c_cell_list <- reactCellList()
+            
+            disable("dp.export.selection")
+            disable("dp.save.selection")
+            disable("fs.export.selection")
+            disable("fs.save.selection")
+            disable("vp.export.selection")
+            disable("vp.save.selection")
+            disable("fp.export.selection")
+            disable("fp.save.selection")
+            
         } else {
             click_data <- plotly::event_data("plotly_selected")
             # click_data = NULL
             if(is.null(click_data)){
+                
+                disable("dp.export.selection")
+                disable("dp.save.selection")
+                disable("fs.export.selection")
+                disable("fs.save.selection")
+                disable("vp.export.selection")
+                disable("vp.save.selection")
+                disable("fp.export.selection")
+                disable("fp.save.selection")
+                
                 message("output$vis.plot: is.null(click_data)")
                 c_cell_list <- c()
             } else {
+                enable("dp.export.selection")
+                enable("dp.save.selection")
+                enable("fs.export.selection")
+                enable("fs.save.selection")
+                enable("vp.export.selection")
+                enable("vp.save.selection")
+                enable("fp.export.selection")
+                enable("fp.save.selection")
+                
                 message("output$vis.plot: !is.null(click_data)")
                 # curveNumber
                 # pointNumber
