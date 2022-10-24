@@ -69,12 +69,12 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 5,
-                        disabled(shiny::downloadButton("dp.export.selection","export current selection")),
+                        shinyjs::disabled(shiny::downloadButton("dp.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        disabled(shiny::actionButton("dp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        shinyjs::disabled(shiny::actionButton("dp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -105,12 +105,12 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 3,
-                        disabled(shiny::downloadButton("fs.export.selection","export current selection")),
+                        shinyjs::disabled(shiny::downloadButton("fs.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        disabled(shiny::actionButton("fs.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        shinyjs::disabled(shiny::actionButton("fs.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -137,12 +137,12 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 7,
-                        disabled(shiny::downloadButton("vp.export.selection","export current selection")),
+                        shinyjs::disabled(shiny::downloadButton("vp.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        disabled(shiny::actionButton("vp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        shinyjs::disabled(shiny::actionButton("vp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
@@ -174,12 +174,12 @@ UISelPanel = function(){
                     ),
                     shiny::column(
                         width = 3,
-                        disabled(shiny::downloadButton("fp.export.selection","export current selection")),
+                        shinyjs::disabled(shiny::downloadButton("fp.export.selection","export current selection")),
                         style="display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        disabled(shiny::actionButton("fp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        shinyjs::disabled(shiny::actionButton("fp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
                         style="display:flex;align-items:center"
                     ),
                     style="display:flex"
