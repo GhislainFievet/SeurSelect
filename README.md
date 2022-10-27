@@ -21,7 +21,7 @@ You need a **Seurat object**, let's say ```pbmc```. To run the app execute:
 ```R
 my.selections = SeurSelect(pmbc)
 ```
-On application axit cells selections are stored in ```my.selections``` variable.
+On application exit cells selections are stored in ```my.selections``` variable.
 
 ## Use example
 In this example we show how to select and export points from the Seurat VlnPlot.
