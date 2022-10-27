@@ -23,9 +23,9 @@ my.selections = SeurSelect(pmbc)
 ```
 On application exit, cell selections are stored in ```my.selections``` variable.
 
-## Use example
-In this example we show how to select and export points from the Seurat VlnPlot.
-1. Click **create a selection**
+## Use case example
+In this example we show how to select and export cells from the Seurat VlnPlot.
+1. Click **create a selection**  
 To create a new selection click on the **create a selection** button.
 ![create a selection](https://raw.githubusercontent.com/GhislainFievet/SeurSelect/main/im/ss_1.png)
 2. Select the **VlnPlot** tab
