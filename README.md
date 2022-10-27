@@ -19,13 +19,9 @@ library(seurselect)
 
 You need a **Seurat object**, let's say ```pbmc```. To run the app execute:
 ```R
-SeurSelect(pmbc)
+my.selections = SeurSelect(pmbc)
 ```
-
-## Use a defined cell selection
-```R
-my.selections = SeurSelect(pmbc, l_selections=l_cells)
-```
+On application axit cells selections are stored in ```my.selections``` variable.
 
 ## Use example
 In this example we show how to select and export points from the Seurat VlnPlot.
