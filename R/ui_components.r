@@ -1,23 +1,23 @@
-UITitlePanel <- function(){
+UITitlePanel <- function() {
     shiny::fluidRow(
         shiny::column(
-            width=8,
+            width = 8,
             shiny::h1("SeurSelect"),
-            shiny::textInput("sel.panel.mode", "", value="main")
+            shiny::textInput("sel.panel.mode", "", value = "main")
         ),
         shiny::column(
-            width=4,
-            shiny::actionButton("quit.button.1","Back to console", icon = shiny::icon("arrow-left", style="margin-right:1em"), align="right"),
-            style="display:flex;justify-content:flex-end;margin-top:1em"
+            width = 4,
+            shiny::actionButton("quit.button.1", "Back to console", icon = shiny::icon("arrow-left", style = "margin-right:1em"), align = "right"),
+            style = "display:flex;justify-content:flex-end;margin-top:1em"
         ),
-        style="background-color:rgb(240,240,240); style:'margin-top:0'"
+        style = "background-color:rgb(240,240,240); style:'margin-top:0'"
     )
 }
 
-UIVisPanel = function(){
-    selected_red = ifelse( "umap" %in% c_reducs, "umap", c_reducs[1])
-    selected_meta = ifelse( "seurat_clusters" %in% c_meta_data, "seurat_clusters", c_meta_data[1])
-    
+UIVisPanel <- function() {
+    selected_red <- ifelse("umap" %in% c_reducs, "umap", c_reducs[1])
+    selected_meta <- ifelse("seurat_clusters" %in% c_meta_data, "seurat_clusters", c_meta_data[1])
+
     list(
         shiny::fluidRow(
             # column(
@@ -26,21 +26,21 @@ UIVisPanel = function(){
             # ),
             shiny::column(
                 width = 4,
-                shiny::selectInput("vis.red.algo","Dim Reduc Algo ",c_reducs, selected=selected_red)
+                shiny::selectInput("vis.red.algo", "Dim Reduc Algo ", c_reducs, selected = selected_red)
             ),
             shiny::column(
                 width = 4,
-                shiny::selectInput("vis.meta.data","Metadata",c_meta_data, selected=selected_meta)
+                shiny::selectInput("vis.meta.data", "Metadata", c_meta_data, selected = selected_meta)
             )
         ),
         shinycssloaders::withSpinner(shiny::plotOutput("vis.plot"))
     )
 }
 
-UISelPanel = function(){ 
-    selected_red = ifelse( "umap" %in% c_reducs, "umap", c_reducs[1])
-    selected_meta = ifelse( "seurat_clusters" %in% c_meta_data, "seurat_clusters", c_meta_data[1])
-    
+UISelPanel <- function() {
+    selected_red <- ifelse("umap" %in% c_reducs, "umap", c_reducs[1])
+    selected_meta <- ifelse("seurat_clusters" %in% c_meta_data, "seurat_clusters", c_meta_data[1])
+
     list(
         shiny::fluidRow(
             shiny::column(
@@ -49,35 +49,35 @@ UISelPanel = function(){
             ),
         ),
         shiny::tabsetPanel(
-            id="tp.sel.panel",
+            id = "tp.sel.panel",
             shiny::tabPanel(
                 "DimPlot",
                 "",
-                shiny::fluidRow(                    
+                shiny::fluidRow(
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("dp.sel.red.algo","Dim Reduc Algo ", c_reducs, selected=selected_red)
+                        shiny::selectInput("dp.sel.red.algo", "Dim Reduc Algo ", c_reducs, selected = selected_red)
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("dp.sel.meta.data","Metadata", c_meta_data, selected=selected_meta)
+                        shiny::selectInput("dp.sel.meta.data", "Metadata", c_meta_data, selected = selected_meta)
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("dp.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
-                        style="display:flex;align-items:center"
+                        shiny::actionButton("dp.sel.support.valid", "OK", style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style = "display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 5,
-                        shinyjs::disabled(shiny::downloadButton("dp.export.selection","export current selection")),
-                        style="display:flex;align-items:center; flex-direction: row-reverse;"
+                        shinyjs::disabled(shiny::downloadButton("dp.export.selection", "export current selection")),
+                        style = "display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shinyjs::disabled(shiny::actionButton("dp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
-                        style="display:flex;align-items:center"
+                        shinyjs::disabled(shiny::actionButton("dp.save.selection", "save selection", icon = shiny::icon("save"), style = "color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        style = "display:flex;align-items:center"
                     ),
-                    style="display:flex"
+                    style = "display:flex"
                 )
             ),
             shiny::tabPanel(
@@ -86,34 +86,34 @@ UISelPanel = function(){
                 shiny::fluidRow(
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("fs.sel.meta.data","Metadata", c_meta_data, selected=selected_meta)
+                        shiny::selectInput("fs.sel.meta.data", "Metadata", c_meta_data, selected = selected_meta)
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::selectizeInput("fs.sel.genes1", "Gene1", choices = NULL, options = list(placeholder = 'Select gene 1')),
+                        shiny::selectizeInput("fs.sel.genes1", "Gene1", choices = NULL, options = list(placeholder = "Select gene 1")),
                         # selectInput("fs.sel.genes1","Gene 1", c_genes)
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::selectizeInput("fs.sel.genes2", "Gene2", choices = NULL, options = list(placeholder = 'Select gene 2')),
+                        shiny::selectizeInput("fs.sel.genes2", "Gene2", choices = NULL, options = list(placeholder = "Select gene 2")),
                         # selectInput("fs.sel.genes2","Gene 2", c_genes)
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("fs.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
-                        style="display:flex;align-items:center"
+                        shiny::actionButton("fs.sel.support.valid", "OK", style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style = "display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 3,
-                        shinyjs::disabled(shiny::downloadButton("fs.export.selection","export current selection")),
-                        style="display:flex;align-items:center; flex-direction: row-reverse;"
+                        shinyjs::disabled(shiny::downloadButton("fs.export.selection", "export current selection")),
+                        style = "display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shinyjs::disabled(shiny::actionButton("fs.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
-                        style="display:flex;align-items:center"
+                        shinyjs::disabled(shiny::actionButton("fs.save.selection", "save selection", icon = shiny::icon("save"), style = "color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        style = "display:flex;align-items:center"
                     ),
-                    style="display:flex"
+                    style = "display:flex"
                 )
             ),
             shiny::tabPanel(
@@ -122,30 +122,30 @@ UISelPanel = function(){
                 shiny::fluidRow(
                     shiny::column(
                         width = 2,
-                        shiny::selectizeInput("vp.sel.genes", "Gene", choices = NULL, options = list(placeholder = 'Select a gene')),
+                        shiny::selectizeInput("vp.sel.genes", "Gene", choices = NULL, options = list(placeholder = "Select a gene")),
                         # selectizeInput("vp.sel.genes", "Gene", choices = NULL)
                         # selectInput("vp.sel.genes","Gene", c_genes)
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("vp.sel.meta.data","Metadata", c_meta_data, selected=selected_meta)
+                        shiny::selectInput("vp.sel.meta.data", "Metadata", c_meta_data, selected = selected_meta)
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("vp.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
-                        style="display:flex;align-items:center"
+                        shiny::actionButton("vp.sel.support.valid", "OK", style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style = "display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 7,
-                        shinyjs::disabled(shiny::downloadButton("vp.export.selection","export current selection")),
-                        style="display:flex;align-items:center; flex-direction: row-reverse;"
+                        shinyjs::disabled(shiny::downloadButton("vp.export.selection", "export current selection")),
+                        style = "display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shinyjs::disabled(shiny::actionButton("vp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
-                        style="display:flex;align-items:center"
+                        shinyjs::disabled(shiny::actionButton("vp.save.selection", "save selection", icon = shiny::icon("save"), style = "color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        style = "display:flex;align-items:center"
                     ),
-                    style="display:flex"
+                    style = "display:flex"
                 )
             ),
             shiny::tabPanel(
@@ -154,67 +154,73 @@ UISelPanel = function(){
                 shiny::fluidRow(
                     shiny::column(
                         width = 2,
-                        shiny::selectInput("fp.sel.red.algo","Dim Reduc Algo ", c_reducs, selected=selected_red)
+                        shiny::selectInput("fp.sel.red.algo", "Dim Reduc Algo ", c_reducs, selected = selected_red)
                     ),
                     shiny::column(
                         width = 2,
-                        shiny::selectizeInput("fp.sel.genes", "Gene", choices = NULL, options = list(placeholder = 'Select a gene'))
+                        shiny::selectizeInput("fp.sel.genes", "Gene", choices = NULL, options = list(placeholder = "Select a gene"))
                         # selectInput("fp.sel.genes","Gene", c_genes)
                     ),
-                     shiny::column(4,
-  
-                      # Copy the line below to make a slider range 
-                      shiny::sliderInput("fp.sel.cutoff.slider", label = "Cutoff", min = -1, 
-                        max = 5, value = c(0, 4))
+                    shiny::column(
+                        4,
+
+                        # Copy the line below to make a slider range
+                        shiny::sliderInput("fp.sel.cutoff.slider",
+                            label = "Cutoff", min = -1,
+                            max = 5, value = c(0, 4)
+                        )
                     ),
                     shiny::column(
                         width = 1,
-                        shiny::actionButton("fp.sel.support.valid","OK", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
-                        style="display:flex;align-items:center"
+                        shiny::actionButton("fp.sel.support.valid", "OK", style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                        style = "display:flex;align-items:center"
                     ),
                     shiny::column(
                         width = 3,
-                        shinyjs::disabled(shiny::downloadButton("fp.export.selection","export current selection")),
-                        style="display:flex;align-items:center; flex-direction: row-reverse;"
+                        shinyjs::disabled(shiny::downloadButton("fp.export.selection", "export current selection")),
+                        style = "display:flex;align-items:center; flex-direction: row-reverse;"
                     ),
                     shiny::column(
                         width = 2,
-                        shinyjs::disabled(shiny::actionButton("fp.save.selection","save selection", icon=shiny::icon("save"), style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
-                        style="display:flex;align-items:center"
+                        shinyjs::disabled(shiny::actionButton("fp.save.selection", "save selection", icon = shiny::icon("save"), style = "color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+                        style = "display:flex;align-items:center"
                     ),
-                    style="display:flex"
+                    style = "display:flex"
                 )
             )
         ),
-        shinycssloaders::withSpinner(plotly::plotlyOutput("sel.plot", width = "100%", height="100%"))
+        shinycssloaders::withSpinner(plotly::plotlyOutput("sel.plot", width = "100%", height = "100%"))
     )
 }
 
-UIVisSelection <- function(){ 
+UIVisSelection <- function() {
     list(
         shiny::h2("Cells"),
-        shiny::verbatimTextOutput('vis.sel.table')
+        shiny::verbatimTextOutput("vis.sel.table")
         # dataTableOutput('vis.sel.table')
         # verbatimTextOutput("click"),
     )
 }
 
-UIListSelection <- function(){ 
+UIListSelection <- function() {
     list(
         shiny::h2("Selection list"),
         shiny::div(
-        DT::dataTableOutput('list.sel.table'),id="list.sel.table.parent", style="cursor:pointer")
+            DT::dataTableOutput("list.sel.table"),
+            id = "list.sel.table.parent", style = "cursor:pointer"
+        )
     )
 }
 
-UIActionPanel <- function(){ 
+UIActionPanel <- function() {
     # list(
     #     h2("What do you want to do?"),
     #     actionButton('create.sel.button', "create a selection"),
     #     actionButton('quit.button.2', "close and go back to console")
     # )
-    shiny::tags$div(        shiny::h1("What do you want to do?", style="margin:1em"),
-        shiny::actionButton('create.sel.button', "Create a selection", style="margin:2em;padding:1em;color: #fff;font-size: x-large; background-color: #337ab7;"),
-        shiny::actionButton('quit.button.2', "Close and go back to console", style="margin:2em;padding:1em;font-size: x-large;"),
-            style="display:flex;flex-direction:column;height:500px")
+    shiny::tags$div(shiny::h1("What do you want to do?", style = "margin:1em"),
+        shiny::actionButton("create.sel.button", "Create a selection", style = "margin:2em;padding:1em;color: #fff;font-size: x-large; background-color: #337ab7;"),
+        shiny::actionButton("quit.button.2", "Close and go back to console", style = "margin:2em;padding:1em;font-size: x-large;"),
+        style = "display:flex;flex-direction:column;height:500px"
+    )
 }
