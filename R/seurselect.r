@@ -555,6 +555,6 @@ SeurSelect <- function(arg.seurat.object, l_selections = NULL, assay = NULL) {
 }
 
 getPBMC = function(){
-    load("pbmc.RData")
+    load(file.path("data", "pbmc.RData"))
     return(pbmc)
 }
