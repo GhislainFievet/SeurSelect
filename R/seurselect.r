@@ -553,3 +553,8 @@ SeurSelect <- function(arg.seurat.object, l_selections = NULL, assay = NULL) {
 
     return(shiny::runGadget(ui(seurat.object), server))
 }
+
+getPBMC = function(){
+    load("pbmc.RData")
+    return(pbmc)
+}
