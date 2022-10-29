@@ -17,7 +17,7 @@ library(seurselect)
 
 ## Basic use
 
-You need a **Seurat object**, let's say ```pbmc```.
+You need a **Seurat object**, let's say ```pbmc```.  
 You can get a **Seurat object** example:
 ```R
 download.file("https://github.com/GhislainFievet/SeurSelect/raw/main/data/pbmc.RData","pbmc.RData")
