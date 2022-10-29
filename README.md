@@ -15,13 +15,23 @@ and load the library
 library(seurselect)
 ```
 
-## Basic usage
+## Basic use
 
-You need a **Seurat object**, let's say ```pbmc```. To run the app execute:
+You need a **Seurat object**, let's say ```pbmc```.
+You can get a **Seurat object** example:
+```R
+download.file("https://github.com/GhislainFievet/SeurSelect/raw/main/data/pbmc.RData","pbmc.RData")
+load("pbmc.RData")
+pbmc
+```
+
+To run the app execute:
 ```R
 my.selections = SeurSelect(pmbc)
 ```
 On application exit, cell selections are stored in ```my.selections``` variable.
+
+
 
 ## Use case example
 In this example we show how to select and export cells from the Seurat VlnPlot.
