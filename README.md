@@ -1,5 +1,5 @@
-# SeurSelect
-
+# SeurSelect  
+SeuSelect is a tool to make cell selections from a scRNA-seq experiment via a Seurat object. It is a Shiny based application.
 ![presentation view](https://raw.githubusercontent.com/GhislainFievet/SeurSelect/main/im/main_panel.png)
 
 ## Discover a demo on shinyapp.io
