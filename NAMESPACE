@@ -1,3 +1,2 @@
 export(SeurSelect)
-export(getPBMC)
 #' @importFrom ggplot2 last_plot

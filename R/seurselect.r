@@ -81,8 +81,8 @@ server <- function(input, output, session) {
 
     output$vis.plot <- shiny::renderPlot({
         message("start output$vis.plot")
-        req(input$sel.panel.mode)
-        req(input$vis.red.algo)
+        shiny::req(input$sel.panel.mode)
+        shiny::req(input$vis.red.algo)
         df_2plot <- as.data.frame(seurat.object@reductions[[input$vis.red.algo]]@cell.embeddings)
 
         c_cell_list <- c()
@@ -272,25 +272,25 @@ server <- function(input, output, session) {
 
     # Observe save selection
     shiny::observeEvent(input$dp.save.selection, {
-        req(input$dp.save.selection)
+        shiny::req(input$dp.save.selection)
         shiny::showModal(dataModal())
     })
     shiny::observeEvent(input$fs.save.selection, {
-        req(input$fs.save.selection)
+        shiny::req(input$fs.save.selection)
         shiny::showModal(dataModal())
     })
     shiny::observeEvent(input$vp.save.selection, {
-        req(input$vp.save.selection)
+        shiny::req(input$vp.save.selection)
         shiny::showModal(dataModal())
     })
     shiny::observeEvent(input$fp.save.selection, {
-        req(input$fp.save.selection)
+        shiny::req(input$fp.save.selection)
         shiny::showModal(dataModal())
     })
 
 
     shiny::observeEvent(input$list.sel.table_rows_selected, {
-        req(input$list.sel.table_rows_selected)
+        shiny::req(input$list.sel.table_rows_selected)
         shiny::updateTextInput(session, "sel.panel.mode", value = "main")
         # showModal(modalDialog(
         #   title = "message",
@@ -552,9 +552,4 @@ SeurSelect <- function(arg.seurat.object, l_selections = NULL, assay = NULL) {
     }
 
     return(shiny::runGadget(ui(seurat.object), server))
-}
-
-getPBMC = function(){
-    load(file.path("data", "pbmc.RData"))
-    return(pbmc)
 }
