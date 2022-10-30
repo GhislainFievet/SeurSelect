@@ -20,7 +20,7 @@ library(seurselect)
 You need a **Seurat object**, let's say ```pbmc```.  
 You can get a **Seurat object** example:
 ```R
-download.file("https://github.com/GhislainFievet/SeurSelect/raw/main/data/pbmc.RData","pbmc.RData")
+download.file("https://www.dropbox.com/s/0xbzyfpr3eruapu/pbmc.RData?raw=1","pbmc.RData")
 load("pbmc.RData")
 pbmc
 ```
