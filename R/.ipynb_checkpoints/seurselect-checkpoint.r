@@ -18,7 +18,7 @@ ui <- function(seurat.object) {
     shiny::fluidPage(
         shinyjs::useShinyjs(),
         # shiny::includeScript(file.path("js", "script.js")),
-        shiny::includeScript(system.file(file.path("js", "script.js"), package = "seurselect"),
+        shiny::includeScript(system.file(file.path("js", "script.js"), package = "seurselect")),
 
         # titlePanel(UITitlePanel()),
         UITitlePanel(),
